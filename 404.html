@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Open in RoApp</title><meta name="theme-color" content="#090b10">
+<script>
+/* Works on GitHub Pages: any /videos/<id> path lands here. Assets are loaded relative to the site root. */
+var P=location.pathname,i=P.indexOf('/videos/'),base=i>=0?P.slice(0,i+1):'/',id=i>=0?decodeURIComponent(P.slice(i+8).split('/')[0]):'';
+document.write('<link rel="stylesheet" href="'+base+'site.css"><link rel="icon" href="'+base+'logo.png">');
+</script></head><body><canvas id="sky"></canvas>
+<div class="opn" id="o"></div>
+<script>
+var o=document.getElementById('o');
+if(/^[A-Za-z0-9_-]{1,64}$/.test(id)){
+  o.innerHTML='<img src="'+base+'logo.png" width="80" height="80" style="border-radius:22px;box-shadow:0 0 40px rgba(255,122,89,.5)" alt=""><h1 style="margin:18px 0 8px">Someone shared a video</h1><p style="color:#99a1b8;margin-bottom:22px">Open it in RoApp to watch, like and comment.</p><a class="btn" id="go" href="roapp://video/'+encodeURIComponent(id)+'">Open in RoApp</a><p class="note">Nothing happening? Open RoApp and paste this link in the search box.<br><code id="lk"></code></p><p class="note"><a href="'+base+'">What is RoApp?</a></p>';
+  document.getElementById('lk').textContent=location.href;
+  setTimeout(function(){location.href='roapp://video/'+encodeURIComponent(id)},400);
+}else{
+  o.innerHTML='<h1>Page not found</h1><p class="note" style="margin:12px 0 20px">This page does not exist.</p><a class="btn" href="'+base+'">Go to the RoApp site</a>';
+}
+</script></body></html>
